@@ -1,23 +1,14 @@
 pipeline {
-    agent any
+    agent {label 'agent1'}
 
     stages {
-        stage('Maven Check') {
-            steps {
-                script {
-                    // Check Maven version using the specified path
-                    sh '/usr/bin/mvn --version'
-                }
-            }
-        }
         stage('Hello') {
             steps {
                 echo 'Hello World'
             }
         }
-        stage('Maven Version') {
+         stage('Maven') {
             steps {
-                // Check Maven version using the standard 'mvn' command
                 sh 'mvn --version'
             }
         }
