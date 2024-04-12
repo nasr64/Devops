@@ -1,6 +1,7 @@
 package tn.esprit.SkiStationProject.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -42,8 +43,9 @@ public class Skier extends BaseEntity {
 	Set<Registration> registrations;
 
 
+    public void setId(long l) {
+    }
 
-
-
-
+	public void setRegistrations(List<Registration> singletonList) {
+	}
 }

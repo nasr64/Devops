@@ -28,5 +28,7 @@ public class Piste extends BaseEntity {
 
 	@ManyToMany(mappedBy= "pistes")
 	Set<Skier> skiers;
-	
+
+    public void setId(long l) {
+    }
 }

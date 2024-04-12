@@ -17,7 +17,6 @@ import java.util.List;
 public class SkierRestController {
 
     private final ISkierServices skierServices;
-
     @Operation(description = "Add Skier")
     @PostMapping
     public Skier addSkier(@RequestBody Skier skier){

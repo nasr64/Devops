@@ -28,4 +28,6 @@ public class Subscription extends BaseEntity {
     @Enumerated(EnumType.STRING)
 	TypeSubscription typeSub;
 
+    public void setId(Long subscriptionId) {
+    }
 }
