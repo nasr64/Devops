@@ -14,7 +14,7 @@ pipeline {
         stage('Coverage Test') {
             steps {
                 script {
-                    sh 'mvn clean test jacoco:report'
+                    sh 'mvn clean test -P test jacoco:report'
                 }
             }
         }
