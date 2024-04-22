@@ -11,16 +11,12 @@ pipeline {
                 sh 'mvn --version'
             }
         }
-      stage('coverage test') {
-       steps {
-        script {
-            echo 'Running Maven clean test'
-            sh 'mvn clean test'
-            echo 'Generating Jacoco coverage report'
-            sh 'mvn jacoco:report'
-        }
-    }
-}
+       stage('coverage test') {
+            steps {
+                script {
+                    sh 'mvn clean test jacoco:report'
+                }
+          }   
 
         stage('SonarQube analysis') {
             steps {
