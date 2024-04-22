@@ -11,15 +11,14 @@ pipeline {
                 sh 'mvn --version'
             }
         }
-       stage('coverage test') {
+        stage('Coverage Test') {
             steps {
                 script {
-               sh 'mvn clean test -P test jacoco:report'
-
+                    sh 'mvn clean test jacoco:report'
                 }
-          }   
-
-        stage('SonarQube analysis') {
+            }
+        }
+        stage('SonarQube Analysis') {
             steps {
                 script {
                     sh 'mvn compile sonar:sonar -Dsonar.host.url=http://172.29.86.231:9000/ -Dsonar.organization=Devops -Dsonar.projectKey=DevopsProject -Dsonar.login=sqp_e31373e7f893599fa776105e3c3f350819816ce2 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml'
