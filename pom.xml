@@ -18,6 +18,32 @@
         <jacoco.version>0.8.7</jacoco.version>
         <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <!-- Configuration specific to the development profile -->
+            <properties>
+                <env>development</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <!-- Configuration specific to the test profile -->
+            <properties>
+                <env>testing</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <!-- Configuration specific to the production profile -->
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
