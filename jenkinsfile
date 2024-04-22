@@ -7,9 +7,20 @@ pipeline {
                 echo 'Hello World'
             }
         }
-         stage('Maven') {
+        stage('Maven') {
             steps {
                 sh 'mvn --version'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarQubeScanner'
+                    def sonarUrl = params.SONAR_URL ?: 'http://172.29.86.231:9000/' 
+                    withSonarQubeEnv('SonarQube Server', sonarUrl) {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=sqp_a3af6a004eb18eaf862cf8b971c110d762731479"
+                    }
+                }
             }
         }
     }
