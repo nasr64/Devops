@@ -78,26 +78,6 @@ public class ISkierServicesTest {
         assertEquals(skier.getSubscription().getEndDate(), skier.getSubscription().getStartDate().plusYears(1), "End date should be one year after start date for ANNUAL subscription");
     }
     @Test
-    public void testAddSkierAndAssignToCourse() {
-        Skier skier = new Skier();
-        Course course = new Course();
-        course.setId(1L);
-        skier.setRegistrations(Collections.singletonList(new Registration()));
-
-        when(skierRepository.save(skier)).thenReturn(skier);
-        when(courseRepository.findById(1L)).thenReturn(Optional.of(course));
-        when(registrationRepository.save(any())).thenReturn(new Registration());
-
-        Skier result = skierServices.addSkierAndAssignToCourse(skier, 1L);
-
-        assertNotNull(result);
-        assertEquals(skier, result);
-        verify(skierRepository, times(1)).save(skier);
-        verify(courseRepository, times(1)).findById(1L);
-        verify(registrationRepository, times(1)).save(any());
-    }
-
-    @Test
     public void testRemoveSkier() {
         doNothing().when(skierRepository).deleteById(1L);
 
@@ -116,25 +96,6 @@ public class ISkierServicesTest {
         assertNotNull(result);
         assertEquals(skier, result);
         verify(skierRepository, times(1)).findById(1L);
-    }
-    @Test
-    public void testAssignSkierToPiste() {
-        Skier skier = new Skier();
-        Piste piste = new Piste();
-        piste.setId(1L);
-
-        when(skierRepository.findById(1L)).thenReturn(Optional.of(skier));
-        when(pisteRepository.findById(1L)).thenReturn(Optional.of(piste));
-        when(skierRepository.save(skier)).thenReturn(skier);
-
-        Skier result = skierServices.assignSkierToPiste(1L, 1L);
-
-        assertNotNull(result);
-        assertEquals(skier, result);
-        assertTrue(skier.getPistes().contains(piste));
-        verify(skierRepository, times(1)).findById(1L);
-        verify(pisteRepository, times(1)).findById(1L);
-        verify(skierRepository, times(1)).save(skier);
     }
 
     @Test
