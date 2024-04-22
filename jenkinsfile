@@ -1,8 +1,5 @@
 pipeline {
     agent { label 'agent1' }
-     environment {
-        SONAR_TOKEN = credentials('jenkins-sonar') // Define SonarQube token variable
-    }
     stages {
         stage('Hello') {
             steps {
@@ -16,8 +13,10 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn clean package sonar:sonar -Dsonar.host.url=http://172.29.86.231:9000/ -Dsonar.login=$SONAR_TOKEN"
+                   script{
+                         withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN')]) {
+                             sh "mvn clean package sonar:sonar -Dsonar.host.url=http://172.29.86.231:9000/ -Dsonar.login=$SONAR_TOKEN"
+                         }
                 }
             }
         }
