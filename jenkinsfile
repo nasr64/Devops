@@ -1,6 +1,8 @@
 pipeline {
     agent { label 'agent1' }
-
+     environment {
+        SONAR_TOKEN = credentials('jenkins-sonar') // Define SonarQube token variable
+    }
     stages {
         stage('Hello') {
             steps {
