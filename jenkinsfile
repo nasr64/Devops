@@ -15,7 +15,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn clean package sonar:sonar -Dsonar.host.url=http://172.29.86.231:9000 -Dsonar.login=$SONAR_TOKEN"
+                    sh "mvn clean package sonar:sonar -Dsonar.host.url=http://172.29.86.231:9000/ -Dsonar.login=$SONAR_TOKEN"
                 }
             }
         }
