@@ -30,7 +30,7 @@ pipeline {
         success {
             emailext subject: 'Build Success Notification',
                       body: 'Your Jenkins build succeeded. Congratulations!',
-                      to: 'your.email@example.com'
+                      to: 'nasriamani254@gmail.com'
         }
     }
 }
