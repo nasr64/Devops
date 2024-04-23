@@ -11,17 +11,17 @@ services:
     networks:
       - springapimysql-net
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - db:/var/lib/mysql
   app:
     depends_on:
       - mysqldb
-    build: /home/eya/code
+    build: .
     restart: on-failure
     env_file: ./.env
     ports:
-      - "9091:9091"
+      - 9091:9091
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url" : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?allowPublicKeyRetrieval=true&useSSL=false",
